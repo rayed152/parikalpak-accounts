@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Debit {
+  id           String   @id @default(cuid())
+  serialNumber Int
+  date         DateTime
+  particulars  String
+  amount       Decimal  @db.Decimal(10, 2)
+  total        Decimal  @db.Decimal(10, 2)
+  isHistorical Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Credit {
+  id           String   @id @default(cuid())
+  serialNumber Int
+  date         DateTime
+  reference    String?
+  purpose      String?
+  particulars  String
+  amount       Decimal  @db.Decimal(10, 2)
+  total        Decimal  @db.Decimal(10, 2)
+  isHistorical Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Project {
+  id             String    @id @default(cuid())
+  serialNumber   Int
+  projectCode    String
+  subject        String
+  submitDate     DateTime
+  receiveDate    DateTime?
+  chequeNumber   Int?
+  chequeDate     DateTime?
+  bank           String
+  amount         Decimal   @db.Decimal(10, 2)
+  receivedAmount Decimal   @db.Decimal(10, 2)
+  isHistorical   Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
