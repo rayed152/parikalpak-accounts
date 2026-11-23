@@ -30,6 +30,11 @@ export const ipc = {
     archive: () => invoke('project:archive'),
     getHistory: () => invoke('project:getHistory')
   },
+  particulars: {
+    getAll: (type: 'debit' | 'credit' | 'project'): Promise<string[]> => invoke('particulars:getAll', type),
+    add: (type: 'debit' | 'credit' | 'project', label: string): Promise<string[]> => invoke('particulars:add', type, label),
+    delete: (type: 'debit' | 'credit' | 'project', label: string): Promise<string[]> => invoke('particulars:delete', type, label),
+  },
   dashboard: {
     getStats: () => invoke('dashboard:getStats'),
     getChartData: () => invoke('dashboard:getChartData'),

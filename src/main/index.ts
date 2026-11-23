@@ -5,6 +5,7 @@ import { registerDebitHandlers } from './ipc/debit'
 import { registerCreditHandlers } from './ipc/credit'
 import { registerProjectHandlers } from './ipc/project'
 import { registerDashboardHandlers } from './ipc/dashboard'
+import { registerParticularsHandlers } from './ipc/particulars'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -48,6 +49,7 @@ app.whenReady().then(() => {
   registerCreditHandlers()
   registerProjectHandlers()
   registerDashboardHandlers()
+  registerParticularsHandlers()
 
   createWindow()
 
