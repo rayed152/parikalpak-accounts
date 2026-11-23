@@ -72,6 +72,13 @@ export default function LedgerPage() {
   }
 
   useEffect(() => { load() }, [])
+
+  useEffect(() => {
+    const handler = () => load()
+    window.addEventListener('quick-add-success', handler)
+    return () => window.removeEventListener('quick-add-success', handler)
+  }, [])
+
   useEffect(() => { setPage(1) }, [search, sortKey, sortDir, perPage, grouped, groupedDesc])
 
   // ── Merge into combined rows, sorted by createdAt, then assign ledger serials ──
