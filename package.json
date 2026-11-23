@@ -60,9 +60,7 @@
       "node_modules/decimal.js/**/*",
       "node_modules/sonner/**/*"
     ],
-    "asarUnpack": [
-      "node_modules/.prisma/**/*"
-    ],
+    "asar": false,
     "linux": {
       "target": ["AppImage"],
       "category": "Finance"
