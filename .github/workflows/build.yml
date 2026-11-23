@@ -9,6 +9,9 @@ on:
 env:
   DATABASE_URL: "file:./prisma/dev.db"
 
+permissions:
+  contents: write
+
 jobs:
   build-windows:
     runs-on: windows-latest
