@@ -10,6 +10,7 @@ import {
 import { toast } from "sonner";
 import { ipc, formatDate, formatAmount, toInputDate } from "../lib/ipc";
 import Modal, { Field, inputCls } from "../components/Modal";
+import ParticularsInput from "../components/ParticularsInput";
 import ConfirmDialog from "../components/ConfirmDialog";
 import Pagination from "../components/Pagination";
 import GroupPanel, { type GColumn } from "../components/GroupPanel";
@@ -243,13 +244,10 @@ export default function DebitPage() {
         />
       </Field>
       <Field label="Particulars" required>
-        <input
-          type="text"
+        <ParticularsInput
+          type="debit"
           value={form.particulars}
-          onChange={(e) =>
-            setForm((f) => ({ ...f, particulars: e.target.value }))
-          }
-          className={inputCls}
+          onChange={(v) => setForm((f) => ({ ...f, particulars: v }))}
           placeholder="Description"
         />
       </Field>

@@ -10,6 +10,7 @@ import {
 import { toast } from "sonner";
 import { ipc, formatDate, formatAmount, toInputDate } from "../lib/ipc";
 import Modal, { Field, inputCls } from "../components/Modal";
+import ParticularsInput from "../components/ParticularsInput";
 import ConfirmDialog from "../components/ConfirmDialog";
 import Pagination from "../components/Pagination";
 import GroupPanel, { type GColumn } from "../components/GroupPanel";
@@ -301,11 +302,10 @@ export default function ProjectsPage() {
         </Field>
       </div>
       <Field label="Subject" required>
-        <input
-          type="text"
+        <ParticularsInput
+          type="project"
           value={form.subject}
-          onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
-          className={inputCls}
+          onChange={(v) => setForm((f) => ({ ...f, subject: v }))}
           placeholder="Project subject / description"
         />
       </Field>

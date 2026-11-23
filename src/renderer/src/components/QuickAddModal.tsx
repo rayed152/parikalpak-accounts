@@ -3,6 +3,7 @@ import { X, TrendingDown, TrendingUp, Briefcase, ArrowLeft } from 'lucide-react'
 import { toast } from 'sonner'
 import { ipc } from '../lib/ipc'
 import { Field, inputCls } from './Modal'
+import ParticularsInput from './ParticularsInput'
 
 type EntryType = 'debit' | 'credit' | 'project'
 
@@ -154,7 +155,7 @@ export default function QuickAddModal({ onClose }: Props) {
                     <input type="date" value={debit.date} onChange={e => setDebit(f => ({ ...f, date: e.target.value }))} className={inputCls} />
                   </Field>
                   <Field label="Particulars" required>
-                    <input type="text" value={debit.particulars} onChange={e => setDebit(f => ({ ...f, particulars: e.target.value }))} className={inputCls} placeholder="Description" />
+                    <ParticularsInput type="debit" value={debit.particulars} onChange={v => setDebit(f => ({ ...f, particulars: v }))} placeholder="Description" />
                   </Field>
                   <Field label="Amount (Tk)" required>
                     <input type="number" min="0.01" step="0.01" value={debit.amount} onChange={e => setDebit(f => ({ ...f, amount: e.target.value }))} className={inputCls} placeholder="0.00" />
@@ -173,7 +174,7 @@ export default function QuickAddModal({ onClose }: Props) {
                     <input type="text" value={credit.purpose} onChange={e => setCredit(f => ({ ...f, purpose: e.target.value }))} className={inputCls} placeholder="Optional" />
                   </Field>
                   <Field label="Particulars" required>
-                    <input type="text" value={credit.particulars} onChange={e => setCredit(f => ({ ...f, particulars: e.target.value }))} className={inputCls} placeholder="Description" />
+                    <ParticularsInput type="credit" value={credit.particulars} onChange={v => setCredit(f => ({ ...f, particulars: v }))} placeholder="Description" />
                   </Field>
                   <Field label="Amount (Tk)" required>
                     <input type="number" min="0.01" step="0.01" value={credit.amount} onChange={e => setCredit(f => ({ ...f, amount: e.target.value }))} className={inputCls} placeholder="0.00" />
@@ -191,7 +192,7 @@ export default function QuickAddModal({ onClose }: Props) {
                     </Field>
                   </div>
                   <Field label="Subject" required>
-                    <input type="text" value={project.subject} onChange={e => setProject(f => ({ ...f, subject: e.target.value }))} className={inputCls} placeholder="Project subject / description" />
+                    <ParticularsInput type="project" value={project.subject} onChange={v => setProject(f => ({ ...f, subject: v }))} placeholder="Project subject / description" />
                   </Field>
                   <div className="grid grid-cols-2 gap-4">
                     <Field label="Submit Date" required>
