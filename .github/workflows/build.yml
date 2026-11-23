@@ -6,6 +6,9 @@ on:
     tags:
       - 'v*'                  # auto-run when you push a tag like v1.0.0
 
+env:
+  DATABASE_URL: "file:./prisma/dev.db"
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -14,7 +17,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -40,7 +43,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
