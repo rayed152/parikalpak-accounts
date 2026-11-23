@@ -6,6 +6,8 @@ import { registerCreditHandlers } from './ipc/credit'
 import { registerProjectHandlers } from './ipc/project'
 import { registerDashboardHandlers } from './ipc/dashboard'
 import { registerParticularsHandlers } from './ipc/particulars'
+import { runMigrations } from './migrate'
+import { prisma } from './db'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -38,12 +40,14 @@ function createWindow(): void {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   electronApp.setAppUserModelId('com.p-dashboard')
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
+
+  await runMigrations()
 
   registerDebitHandlers()
   registerCreditHandlers()
@@ -58,6 +62,7 @@ app.whenReady().then(() => {
   })
 })
 
-app.on('window-all-closed', () => {
+app.on('window-all-closed', async () => {
+  await prisma.$disconnect()
   if (process.platform !== 'darwin') app.quit()
 })

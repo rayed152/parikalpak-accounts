@@ -32,3 +32,7 @@ Thumbs.db
 
 # electron-vite cache
 .vite/
+
+# SQLite databases
+prisma/*.db
+prisma/*.db-journal
